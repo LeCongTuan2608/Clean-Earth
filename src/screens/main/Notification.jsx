@@ -1,12 +1,9 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { HeaderNav, ItemNotification } from '../../components';
 import { COLORS, SIZE } from '../../constants';
 import { ThemeContext } from '../../context';
-import { HeaderNav, ItemNotification } from '../../components';
 import { IconFeather, IconIon } from '../../icons';
-import { useNavigation } from '@react-navigation/native';
-import { Button } from '@rneui/themed';
 Notification.propTypes = {};
 
 function Notification(props) {
