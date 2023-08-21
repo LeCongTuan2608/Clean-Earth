@@ -6,7 +6,7 @@ import { ThemeContext } from '../../context';
 import { COLORS, SIZE } from '../../constants';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Formik } from 'formik';
-import { InputCus } from '../../components';
+import { InputCus, InputOTP } from '../../components';
 OTPVerification.propTypes = {};
 const userSchema = yup.object({
    OTP: yup.string().required('Required'),
@@ -93,12 +93,12 @@ function OTPVerification(props) {
                   onSubmit={handleSubmit}>
                   {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
                      <View style={styles.formVerification}>
-                        <InputCus
-                           onChangeText={handleChange('OTP')}
+                        <InputOTP
+                           length={5}
+                           onChangeText={handleChange}
                            value={values.OTP}
                            onBlur={handleBlur('OTP')}
-                           placeholder="Input your OTP"
-                           label="OTP"
+                           label="Input code OTP"
                            name="OTP"
                            error={errors.OTP}
                            touched={touched.OTP}

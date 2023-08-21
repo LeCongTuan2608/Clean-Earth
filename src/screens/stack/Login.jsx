@@ -17,14 +17,26 @@ import logo from '../../../assets/Images/logo.png';
 import { Formik, ErrorMessage, Field, Form } from 'formik';
 import { IconAnt, IconIon } from '../../icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useTranslation } from 'react-i18next';
+import { languageResources, i18next } from '../../service';
+
 Login.propTypes = {};
+
 const userSchema = yup.object({
-   email: yup.string().email('Invalid email').required('Required'),
-   password: yup.string().min(5, 'Too Short!').max(50, 'Too Long!').required('Required'),
+   email: yup
+      .string()
+      .email(i18next.t('errors-input.invalid-email'))
+      .required(i18next.t('errors-input.required')),
+   password: yup
+      .string()
+      .min(5, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required(i18next.t('errors-input.required')),
 });
 
 function Login(props) {
    const { navigation } = props;
+   const { t } = useTranslation();
    const { theme } = useContext(ThemeContext);
    const { setLogin } = useContext(CheckedLoginContext);
    const refForm = useRef();
@@ -113,8 +125,8 @@ function Login(props) {
                            onChangeText={handleChange('email')}
                            value={values.email}
                            onBlur={handleBlur('email')}
-                           placeholder="Input your email"
-                           label="Email"
+                           placeholder={t('login.placeholder-email')}
+                           label={t('login.label-email')}
                            name="email"
                            error={errors.email}
                            touched={touched.email}
@@ -124,8 +136,8 @@ function Login(props) {
                            onChangeText={handleChange('password')}
                            value={values.password}
                            onBlur={handleBlur('password')}
-                           placeholder="Input your password"
-                           label="Password"
+                           placeholder={t('login.placeholder-password')}
+                           label={t('login.label-password')}
                            name="password"
                            error={errors.password}
                            touched={touched.password}
@@ -140,11 +152,11 @@ function Login(props) {
                            <TouchableOpacity
                               style={styles.buttonLogin}
                               onPress={() => setLogin(true)}>
-                              <Text style={styles.textButton}>Login</Text>
+                              <Text style={styles.textButton}> {t('login.button-login')}</Text>
                            </TouchableOpacity>
                            <TouchableOpacity onPress={() => navigation.navigate('Forgot-Password')}>
                               <Text style={{ ...styles.textButton, color: COLORS.blue60 }}>
-                                 Forgot password?
+                                 {t('login.forgot-password')}
                               </Text>
                            </TouchableOpacity>
                         </View>
@@ -162,7 +174,7 @@ function Login(props) {
                      ...styles.textButton,
                      ...styles.textTheme,
                   }}>
-                  Register
+                  {t('login.button-register')}
                </Text>
             </TouchableOpacity>
          </View>

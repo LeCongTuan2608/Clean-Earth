@@ -11,6 +11,7 @@ import NotificationSetting from './stack/NotificationSetting';
 import LoadingApp from './stack/LoadingApp';
 import ForgotPassword from './stack/ForgotPassword';
 import OTPVerification from './stack/OTPVerification';
+import Language from './stack/Language';
 export {
    // main tabs
    Home,
@@ -28,6 +29,7 @@ export {
    Profile,
    Theme,
    NotificationSetting,
+   Language,
    //loading
    LoadingApp,
 };

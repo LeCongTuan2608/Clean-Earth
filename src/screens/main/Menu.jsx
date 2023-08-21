@@ -6,7 +6,7 @@ import avatar from '../../../assets/Images/avatar.jpg';
 import { AvatarCus, HeaderNav } from '../../components';
 import { COLORS, SIZE } from '../../constants';
 import { ThemeContext } from '../../context/ThemeContext';
-import { IconMat, IconMaterial } from '../../icons';
+import { IconAwesome, IconMat, IconMaterial } from '../../icons';
 import { CheckedLoginContext } from '../../context';
 Menu.propTypes = {};
 
@@ -128,6 +128,12 @@ function Menu(props) {
          label: 'Theme',
          icon: <IconMaterial name="theme-light-dark" size={SIZE.large} style={styles.icon} />,
          name: 'Theme',
+         stack: <IconMat name="arrow-forward-ios" size={SIZE.small} style={styles.icon} />,
+      },
+      {
+         label: 'Language',
+         icon: <IconAwesome name="language" size={SIZE.large} style={styles.icon} />,
+         name: 'Language',
          stack: <IconMat name="arrow-forward-ios" size={SIZE.small} style={styles.icon} />,
       },
       {

@@ -6,9 +6,11 @@ import {
    Theme,
    ForgotPassword,
    OTPVerification,
+   Language,
 } from '../screens';
 import MainTabs from './MainTabs';
 
+import { i18next, languageResources } from '../service';
 const App = [
    /* home stack*/
    {
@@ -28,7 +30,7 @@ const App = [
       name: 'Notification-Setting',
       element: NotificationSetting,
       options: {
-         title: 'Setting',
+         title: i18next.t('navigator.setting-notification'),
          headerBackTitle: 'Notification',
       },
    },
@@ -38,6 +40,7 @@ const App = [
       element: Profile,
       options: {
          headerBackTitle: 'Menu',
+         title: i18next.t('navigator.profile'),
       },
    },
    {
@@ -45,6 +48,15 @@ const App = [
       element: Theme,
       options: {
          headerBackTitle: 'Menu',
+         title: i18next.t('navigator.theme'),
+      },
+   },
+   {
+      name: 'Language',
+      element: Language,
+      options: {
+         headerBackTitle: 'Menu',
+         title: i18next.t('navigator.language'),
       },
    },
 ];
@@ -59,19 +71,22 @@ const Auth = [
    {
       name: 'Register',
       element: Register,
+      options: {
+         title: i18next.t('navigator.register'),
+      },
    },
    {
       name: 'Forgot-Password',
       element: ForgotPassword,
       options: {
-         title: 'Forgot Password',
+         title: i18next.t('navigator.forgot-password'),
       },
    },
    {
       name: 'OTP-Verification',
       element: OTPVerification,
       options: {
-         title: 'OTP Verification',
+         title: i18next.t('navigator.OTP-verification'),
       },
    },
 ];

@@ -1,0 +1,32 @@
+{
+   "login": {
+      "button-login": "Login",
+      "forgot-password": "Forgot password?",
+      "label-email": "Email",
+      "label-password": "Password",
+      "placeholder-email": "Input your email",
+      "placeholder-password": "Input your password",
+      "button-register": "Register"
+   },
+   "title-tabs": {
+      "home": "Home",
+      "community": "Community",
+      "rank": "Rank",
+      "notification": "Notification",
+      "menu": "Menu"
+   },
+   "navigator": {
+      "register": "Register",
+      "forgot-password": "Forgot password",
+      "OTP-verification": "OTP Verification",
+      "notification": "Notification",
+      "setting-notification": "Setting notification",
+      "profile": "Profile",
+      "theme": "Theme",
+      "language": "Language"
+   },
+   "errors-input": {
+      "required": "Required",
+      "invalid-email": "Invalid email"
+   }
+}

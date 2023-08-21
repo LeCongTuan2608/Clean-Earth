@@ -59,7 +59,7 @@ function InputSelect(props) {
    };
    const onSelect = (value) => {
       setValueInput(value);
-      setFieldValue(name, value);
+      setFieldValue && setFieldValue(name, value);
       setShow(false);
    };
    const handlePressOut = () => {

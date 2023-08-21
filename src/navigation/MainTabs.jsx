@@ -5,13 +5,14 @@ import { COLORS } from '../constants';
 import { ThemeContext } from '../context/ThemeContext';
 import { IconAnt, IconFeather, IconIon, IconMat } from '../icons';
 import { Community, Home, Menu, Notification, Rank } from '../screens';
+import { useTranslation } from 'react-i18next';
 
 const Tab = createBottomTabNavigator();
 MainTabs.propTypes = {};
 
 function MainTabs(props) {
    const { theme, setTheme } = useContext(ThemeContext);
-
+   const { t } = useTranslation();
    const styles = StyleSheet.create({
       tabNavigation: {
          tabBarBadgeStyle: {
@@ -39,7 +40,9 @@ function MainTabs(props) {
             component={Home}
             options={{
                tabBarLabel: (props) => (
-                  <Text style={{ color: props.color, ...styles.itemNav }}>Home</Text>
+                  <Text style={{ color: props.color, ...styles.itemNav }}>
+                     {t('title-tabs.home')}
+                  </Text>
                ),
                tabBarIcon: (props) => (
                   <Text style={{ color: props.color }}>
@@ -54,7 +57,9 @@ function MainTabs(props) {
             component={Community}
             options={{
                tabBarLabel: (props) => (
-                  <Text style={{ color: props.color, ...styles.itemNav }}>Community</Text>
+                  <Text style={{ color: props.color, ...styles.itemNav }}>
+                     {t('title-tabs.community')}
+                  </Text>
                ),
                tabBarIcon: (props) => (
                   <Text style={{ color: props.color }}>
@@ -69,7 +74,9 @@ function MainTabs(props) {
             component={Rank}
             options={{
                tabBarLabel: (props) => (
-                  <Text style={{ color: props.color, ...styles.itemNav }}>Rank</Text>
+                  <Text style={{ color: props.color, ...styles.itemNav }}>
+                     {t('title-tabs.rank')}
+                  </Text>
                ),
                tabBarIcon: (props) => (
                   <Text style={{ color: props.color }}>
@@ -83,7 +90,9 @@ function MainTabs(props) {
             component={Notification}
             options={{
                tabBarLabel: (props) => (
-                  <Text style={{ color: props.color, ...styles.itemNav }}>Notification</Text>
+                  <Text style={{ color: props.color, ...styles.itemNav }}>
+                     {t('title-tabs.notification')}
+                  </Text>
                ),
                tabBarIcon: (props) => (
                   <Text style={{ color: props.color }}>
@@ -97,7 +106,9 @@ function MainTabs(props) {
             component={Menu}
             options={{
                tabBarLabel: (props) => (
-                  <Text style={{ color: props.color, ...styles.itemNav }}>Menu</Text>
+                  <Text style={{ color: props.color, ...styles.itemNav }}>
+                     {t('title-tabs.menu')}
+                  </Text>
                ),
                tabBarIcon: (props) => (
                   <Text style={{ color: props.color }}>

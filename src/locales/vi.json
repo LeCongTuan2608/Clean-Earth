@@ -1,0 +1,32 @@
+{
+   "login": {
+      "button-login": "Đăng nhập",
+      "forgot-password": "Quên mật khẩu?",
+      "label-email": "Email",
+      "label-password": "Mật khẩu",
+      "placeholder-email": "Nhập email của bạn",
+      "placeholder-password": "Nhập mật khẩu của bạn",
+      "button-register": "Đăng kí"
+   },
+   "title-tabs": {
+      "home": "Trang chủ",
+      "community": "Cộng đồng",
+      "rank": "Xếp hạng",
+      "notification": "Thông báo",
+      "menu": "Menu"
+   },
+   "navigator": {
+      "register": "Đăng kí",
+      "forgot-password": "Quên mật khẩu",
+      "OTP-verification": "Xác nhận mã OTP",
+      "notification": "Thông báo",
+      "setting-notification": "Cài đặt thông báo",
+      "profile": "Hồ sơ",
+      "theme": "Chủ đề",
+      "language": "Ngôn ngữ"
+   },
+   "errors-input": {
+      "required": "Yêu cầu nhập",
+      "invalid-email": "Email không hợp lệ"
+   }
+}

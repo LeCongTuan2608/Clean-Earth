@@ -10,8 +10,10 @@ import { TouchableOpacity } from 'react-native';
 import { COLORS, SIZE } from '../../constants';
 import * as yup from 'yup';
 import { KeyboardAvoidingView } from 'react-native';
+
+import { i18next, languageResources } from '../../service';
 const userSchema = yup.object({
-   email: yup.string().email('Invalid email').required('Required'),
+   email: yup.string().email('Invalid email').required(i18next.t('errors-input.required')),
 });
 const initialValues = { email: '' };
 ForgotPassword.propTypes = {};

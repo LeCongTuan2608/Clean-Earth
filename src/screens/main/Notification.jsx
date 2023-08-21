@@ -4,9 +4,11 @@ import { HeaderNav, ItemNotification } from '../../components';
 import { COLORS, SIZE } from '../../constants';
 import { ThemeContext } from '../../context';
 import { IconFeather, IconIon } from '../../icons';
+import { useTranslation } from 'react-i18next';
 Notification.propTypes = {};
 
 function Notification(props) {
+   const { t } = useTranslation();
    const { navigation } = props;
    const { theme } = useContext(ThemeContext);
    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -73,7 +75,9 @@ function Notification(props) {
          <ScrollView>
             <View style={styles.headerTitle}>
                <View style={styles.title}>
-                  <Text style={{ ...styles.h1, ...styles.textTheme }}>Notification</Text>
+                  <Text style={{ ...styles.h1, ...styles.textTheme }}>
+                     {t('navigator.notification')}
+                  </Text>
                </View>
                <TouchableOpacity onPress={onPressSetting}>
                   <View style={styles.titleIcon}>
