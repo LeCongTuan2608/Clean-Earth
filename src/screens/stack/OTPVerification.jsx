@@ -8,9 +8,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Formik } from 'formik';
 import { InputCus, InputOTP } from '../../components';
 OTPVerification.propTypes = {};
-const userSchema = yup.object({
-   OTP: yup.string().required('Required'),
-});
+
 const initialValues = { OTP: '' };
 function OTPVerification(props) {
    const { navigation } = props;
@@ -25,6 +23,10 @@ function OTPVerification(props) {
    const handleOTPVerification = () => {
       refForm.current.handleSubmit();
    };
+   //validate form
+   const userSchema = yup.object({
+      OTP: yup.string().required('Required'),
+   });
    //style
    const styles = StyleSheet.create({
       container: {

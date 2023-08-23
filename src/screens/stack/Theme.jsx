@@ -5,11 +5,13 @@ import { ThemeContext } from '../../context';
 import { COLORS, SIZE } from '../../constants';
 import { CheckBox } from '@rneui/themed';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 Theme.propTypes = {};
 
 function Theme(props) {
    const { theme, setTheme } = useContext(ThemeContext);
+   const { t } = useTranslation();
    const [selectedMode, setMode] = useState(theme);
 
    const onPressMode = async (mode = 'light') => {
@@ -66,51 +68,44 @@ function Theme(props) {
          backgroundColor: theme === 'light' ? COLORS.gray10 : COLORS.gray90,
       },
    });
+   const mode = [
+      {
+         label: t('theme.light-mode'),
+         name: 'light',
+      },
+      {
+         label: t('theme.dark-mode'),
+         name: 'dark',
+      },
+   ];
    return (
       <View style={styles.container}>
-         <TouchableOpacity onPress={() => onPressMode('light')}>
-            <View style={styles.item}>
-               <Text
-                  style={{
-                     ...styles.textBoldMedium,
-                     ...styles.h2,
-                     ...styles.itemMiddle,
-                     ...styles.text,
-                  }}>
-                  Light mode
-               </Text>
+         {mode.map((item) => {
+            return (
+               <TouchableOpacity onPress={() => onPressMode(item.name)} key={item.name}>
+                  <View style={styles.item}>
+                     <Text
+                        style={{
+                           ...styles.textBoldMedium,
+                           ...styles.h2,
+                           ...styles.itemMiddle,
+                           ...styles.text,
+                        }}>
+                        {item.label}
+                     </Text>
 
-               <CheckBox
-                  containerStyle={styles.checkBox}
-                  checked={selectedMode === 'light'}
-                  checkedIcon="dot-circle-o"
-                  uncheckedIcon="circle-o"
-                  checkedColor={COLORS.blue60}
-                  onPress={() => onPressMode('light')}
-               />
-            </View>
-         </TouchableOpacity>
-         <TouchableOpacity onPress={() => onPressMode('dark')}>
-            <View style={styles.item}>
-               <Text
-                  style={{
-                     ...styles.textBoldMedium,
-                     ...styles.h2,
-                     ...styles.itemMiddle,
-                     ...styles.text,
-                  }}>
-                  Dark mode
-               </Text>
-               <CheckBox
-                  containerStyle={styles.checkBox}
-                  checked={selectedMode === 'dark'}
-                  checkedIcon="dot-circle-o"
-                  uncheckedIcon="circle-o"
-                  checkedColor={COLORS.blue60}
-                  onPress={() => onPressMode('dark')}
-               />
-            </View>
-         </TouchableOpacity>
+                     <CheckBox
+                        containerStyle={styles.checkBox}
+                        checked={selectedMode === item.name}
+                        checkedIcon="dot-circle-o"
+                        uncheckedIcon="circle-o"
+                        checkedColor={COLORS.blue60}
+                        onPress={() => onPressMode(item.name)}
+                     />
+                  </View>
+               </TouchableOpacity>
+            );
+         })}
       </View>
    );
 }

@@ -7,16 +7,27 @@ import { CheckedLoginContext } from './context';
 import { ThemeContext } from './context/ThemeContext';
 import { App, Auth } from './navigation';
 import { LoadingApp } from './screens';
+import { getLanguage, setLanguage } from './util';
+import { useTranslation } from 'react-i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 Layout.propTypes = {};
 
 function Layout(props) {
    const { theme, setTheme } = useContext(ThemeContext);
+   const { t } = useTranslation();
    const { login } = useContext(CheckedLoginContext);
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {
+      const defaultLanguage = async () => {
+         const language = await getLanguage();
+         if (!language) {
+            await setLanguage('en');
+         }
+      };
+      defaultLanguage();
       setTimeout(() => {
          setLoading(false);
       }, 700);
@@ -60,7 +71,11 @@ function Layout(props) {
                              key={stack.name}
                              name={stack.name}
                              component={stack.element}
-                             options={stack?.options}
+                             options={{
+                                ...stack?.options,
+                                title: t(stack?.options?.title),
+                                headerBackTitle: t(stack?.options?.headerBackTitle),
+                             }}
                           />
                        );
                     })
@@ -70,7 +85,11 @@ function Layout(props) {
                              key={stack.name}
                              name={stack.name}
                              component={stack.element}
-                             options={stack?.options}
+                             options={{
+                                ...stack?.options,
+                                title: t(stack?.options?.title),
+                                headerBackTitle: t(stack?.options?.headerBackTitle),
+                             }}
                           />
                        );
                     })}

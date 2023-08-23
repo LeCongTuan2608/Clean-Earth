@@ -11,6 +11,8 @@ import {
 import MainTabs from './MainTabs';
 
 import { i18next, languageResources } from '../service';
+import { t } from 'i18next';
+
 const App = [
    /* home stack*/
    {
@@ -30,8 +32,8 @@ const App = [
       name: 'Notification-Setting',
       element: NotificationSetting,
       options: {
-         title: i18next.t('navigator.setting-notification'),
-         headerBackTitle: 'Notification',
+         title: 'navigator.setting-notification',
+         headerBackTitle: 'navigator.notification',
       },
    },
 
@@ -40,7 +42,7 @@ const App = [
       element: Profile,
       options: {
          headerBackTitle: 'Menu',
-         title: i18next.t('navigator.profile'),
+         title: 'navigator.profile',
       },
    },
    {
@@ -48,7 +50,7 @@ const App = [
       element: Theme,
       options: {
          headerBackTitle: 'Menu',
-         title: i18next.t('navigator.theme'),
+         title: 'navigator.theme',
       },
    },
    {
@@ -56,7 +58,7 @@ const App = [
       element: Language,
       options: {
          headerBackTitle: 'Menu',
-         title: i18next.t('navigator.language'),
+         title: 'navigator.language',
       },
    },
 ];
@@ -72,21 +74,24 @@ const Auth = [
       name: 'Register',
       element: Register,
       options: {
-         title: i18next.t('navigator.register'),
+         title: 'navigator.register',
+         headerBackTitle: 'navigator.login',
       },
    },
    {
       name: 'Forgot-Password',
       element: ForgotPassword,
       options: {
-         title: i18next.t('navigator.forgot-password'),
+         title: 'navigator.forgot-password',
+         headerBackTitle: 'navigator.login',
       },
    },
    {
       name: 'OTP-Verification',
       element: OTPVerification,
       options: {
-         title: i18next.t('navigator.OTP-verification'),
+         title: 'navigator.OTP-verification',
+         headerBackTitle: 'navigator.forgot-password',
       },
    },
 ];

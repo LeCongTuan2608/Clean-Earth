@@ -8,10 +8,12 @@ import { COLORS, SIZE } from '../../constants';
 import { ThemeContext } from '../../context/ThemeContext';
 import { IconAwesome, IconMat, IconMaterial } from '../../icons';
 import { CheckedLoginContext } from '../../context';
+import { useTranslation } from 'react-i18next';
 Menu.propTypes = {};
 
 function Menu(props) {
    const { navigation } = props;
+   const { t } = useTranslation();
    const { theme, setTheme } = useContext(ThemeContext);
    const { login, setLogin } = useContext(CheckedLoginContext);
 
@@ -125,31 +127,31 @@ function Menu(props) {
    });
    const listStack = [
       {
-         label: 'Theme',
+         label: t('menu.label-theme'),
          icon: <IconMaterial name="theme-light-dark" size={SIZE.large} style={styles.icon} />,
          name: 'Theme',
          stack: <IconMat name="arrow-forward-ios" size={SIZE.small} style={styles.icon} />,
       },
       {
-         label: 'Language',
+         label: t('menu.label-language'),
          icon: <IconAwesome name="language" size={SIZE.large} style={styles.icon} />,
          name: 'Language',
          stack: <IconMat name="arrow-forward-ios" size={SIZE.small} style={styles.icon} />,
       },
       {
-         label: 'Report',
+         label: t('menu.label-report'),
          icon: <IconMat name="report" size={SIZE.large} style={styles.icon} />,
          name: 'Report',
          stack: <IconMat name="arrow-forward-ios" size={SIZE.small} style={styles.icon} />,
       },
       {
-         label: 'Support',
+         label: t('menu.label-support'),
          icon: <IconMat name="assignment-ind" size={SIZE.large} style={styles.icon} />,
          name: 'Support',
          stack: <IconMat name="arrow-forward-ios" size={SIZE.small} style={styles.icon} />,
       },
       {
-         label: 'Logout',
+         label: t('menu.label-logout'),
          icon: <IconMat name="logout" size={SIZE.large} style={styles.icon} />,
          name: 'Login',
       },

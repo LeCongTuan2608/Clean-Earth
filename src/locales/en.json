@@ -8,6 +8,9 @@
       "placeholder-password": "Input your password",
       "button-register": "Register"
    },
+   "register": {},
+   "forgot-password": {},
+   "OTP-verification": {},
    "title-tabs": {
       "home": "Home",
       "community": "Community",
@@ -15,7 +18,19 @@
       "notification": "Notification",
       "menu": "Menu"
    },
+   "menu": {
+      "label-theme": "Theme",
+      "label-language": "Language",
+      "label-report": "Report",
+      "label-support": "Support",
+      "label-logout": "Logout"
+   },
+   "theme": {
+      "light-mode": "Light mode",
+      "dark-mode": "Dark mode"
+   },
    "navigator": {
+      "login": "Login",
       "register": "Register",
       "forgot-password": "Forgot password",
       "OTP-verification": "OTP Verification",
@@ -27,6 +42,8 @@
    },
    "errors-input": {
       "required": "Required",
-      "invalid-email": "Invalid email"
+      "invalid-email": "Invalid email",
+      "min": "Too Short!",
+      "max": "Too Long!"
    }
 }

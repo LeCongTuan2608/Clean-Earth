@@ -22,18 +22,6 @@ import { languageResources, i18next } from '../../service';
 
 Login.propTypes = {};
 
-const userSchema = yup.object({
-   email: yup
-      .string()
-      .email(i18next.t('errors-input.invalid-email'))
-      .required(i18next.t('errors-input.required')),
-   password: yup
-      .string()
-      .min(5, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required(i18next.t('errors-input.required')),
-});
-
 function Login(props) {
    const { navigation } = props;
    const { t } = useTranslation();
@@ -45,6 +33,18 @@ function Login(props) {
    const handleSubmit = (values) => {
       console.log(values);
    };
+   //validate form
+   const userSchema = yup.object({
+      email: yup
+         .string()
+         .email(t('errors-input.invalid-email'))
+         .required(t('errors-input.required')),
+      password: yup
+         .string()
+         .min(5, 'Too Short!')
+         .max(50, 'Too Long!')
+         .required(t('errors-input.required')),
+   });
    //style
    const styles = StyleSheet.create({
       container: {

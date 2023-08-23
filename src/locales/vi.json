@@ -8,6 +8,9 @@
       "placeholder-password": "Nhập mật khẩu của bạn",
       "button-register": "Đăng kí"
    },
+   "register": {},
+   "forgot-password": {},
+   "OTP-verification": {},
    "title-tabs": {
       "home": "Trang chủ",
       "community": "Cộng đồng",
@@ -15,7 +18,19 @@
       "notification": "Thông báo",
       "menu": "Menu"
    },
+   "menu": {
+      "label-theme": "Chủ đề",
+      "label-language": "Ngôn ngữ",
+      "label-report": "Báo cáo",
+      "label-support": "Hổ trợ",
+      "label-logout": "Đăng xuất"
+   },
+   "theme": {
+      "light-mode": "Sáng",
+      "dark-mode": "Tối"
+   },
    "navigator": {
+      "login": "Đăng nhập",
       "register": "Đăng kí",
       "forgot-password": "Quên mật khẩu",
       "OTP-verification": "Xác nhận mã OTP",
@@ -27,6 +42,8 @@
    },
    "errors-input": {
       "required": "Yêu cầu nhập",
-      "invalid-email": "Email không hợp lệ"
+      "invalid-email": "Email không hợp lệ",
+      "min": "Quá ngắn!",
+      "max": "Quá dài!"
    }
 }

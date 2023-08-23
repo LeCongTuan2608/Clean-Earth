@@ -12,13 +12,13 @@ import * as yup from 'yup';
 import { KeyboardAvoidingView } from 'react-native';
 
 import { i18next, languageResources } from '../../service';
-const userSchema = yup.object({
-   email: yup.string().email('Invalid email').required(i18next.t('errors-input.required')),
-});
+import { useTranslation } from 'react-i18next';
+
 const initialValues = { email: '' };
 ForgotPassword.propTypes = {};
 function ForgotPassword(props) {
    const { navigation } = props;
+   const { t } = useTranslation();
    const { theme } = useContext(ThemeContext);
    const [inputValue, setInputValue] = useState('');
    const [disable, setDisable] = useState(false);
@@ -44,7 +44,10 @@ function ForgotPassword(props) {
       refForm.current.handleSubmit();
       disable && navigation.navigate('OTP-Verification');
    };
-
+   //validate form
+   const userSchema = yup.object({
+      email: yup.string().email('Invalid email').required(t('errors-input.required')),
+   });
    //style
    const styles = StyleSheet.create({
       container: {
