@@ -10,8 +10,10 @@ import { LoadingApp } from './screens';
 import { getLanguage, setLanguage } from './util';
 import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import config from './config';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
 Layout.propTypes = {};
 
 function Layout(props) {
@@ -19,12 +21,11 @@ function Layout(props) {
    const { t } = useTranslation();
    const { login } = useContext(CheckedLoginContext);
    const [loading, setLoading] = useState(true);
-
    useEffect(() => {
       const defaultLanguage = async () => {
          const language = await getLanguage();
          if (!language) {
-            await setLanguage('en');
+            await setLanguage(config.DEFAULT_LANGUAGE);
          }
       };
       defaultLanguage();
