@@ -4,4 +4,5 @@ import ItemNotification from './ItemNotification';
 import InputCus from './InputCus';
 import InputSelect from './InputSelect';
 import InputOTP from './InputOTP';
-export { AvatarCus, HeaderNav, ItemNotification, InputCus, InputSelect, InputOTP };
+import LoadingScreen from './LoadingScreen';
+export { AvatarCus, HeaderNav, ItemNotification, InputCus, InputSelect, InputOTP, LoadingScreen };
