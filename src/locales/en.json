@@ -18,6 +18,9 @@
       "notification": "Notification",
       "menu": "Menu"
    },
+   "home": {
+      "placeholder-search": "Search here"
+   },
    "menu": {
       "label-theme": "Theme",
       "label-language": "Language",

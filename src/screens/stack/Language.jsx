@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { i18next, languageResources } from '../../service';
+import { i18next, languageResources } from '../../service/i18n';
 import { languageList } from '../../locales';
 import { ThemeContext } from '../../context';
 import { COLORS, SIZE } from '../../constants';

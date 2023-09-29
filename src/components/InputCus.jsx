@@ -4,6 +4,7 @@ import { COLORS, SIZE } from '../constants';
 import { ThemeContext } from '../context';
 import { IconAnt } from '../icons';
 import OutsidePressHandler from 'react-native-outside-press';
+import IconImage from './IconImage';
 
 InputCus.propTypes = {};
 
@@ -24,6 +25,8 @@ function InputCus(props) {
       onChange = undefined,
       secureTextEntry = false,
       textContentType = undefined,
+      clearText = false,
+      onResetText = undefined,
       //icon
       icon = undefined,
       //   errors
@@ -32,8 +35,17 @@ function InputCus(props) {
       touched = undefined,
    } = props;
    const [show, setShow] = useState(secureTextEntry);
+   const [onSearch, setOnSearch] = useState(clearText);
    const showPassword = () => {
       setShow(!show);
+   };
+   const handleChangeText = (value) => {
+      onChangeText(value);
+      onResetText && value !== '' ? setOnSearch(false) : setOnSearch(true);
+   };
+   const handleResetText = () => {
+      onResetText();
+      setOnSearch(true);
    };
    const styles = StyleSheet.create({
       container: {
@@ -48,11 +60,16 @@ function InputCus(props) {
       inputGroup: {
          position: 'relative',
       },
+      iconImage: {
+         position: 'absolute',
+         left: 5,
+         zIndex: 2,
+         top: '50%',
+      },
       icon: {
          position: 'absolute',
          right: 10,
-         top: '25%',
-         bottom: '25%',
+         top: '28%',
       },
       labelStyle: {
          paddingLeft: 1,
@@ -80,6 +97,7 @@ function InputCus(props) {
       <View style={styles.container}>
          <View>
             {label && <Text style={{ ...styles.labelStyle, ...labelStyle }}>{label}</Text>}
+
             <OutsidePressHandler
                onOutsidePress={() => {
                   Keyboard.dismiss();
@@ -90,7 +108,7 @@ function InputCus(props) {
                      name={name}
                      value={value}
                      onBlur={onBlur}
-                     onChangeText={onChangeText}
+                     onChangeText={handleChangeText}
                      placeholder={placeholder}
                      onFocus={onFocus}
                      onChange={onChange}
@@ -98,11 +116,18 @@ function InputCus(props) {
                      secureTextEntry={show}
                      placeholderTextColor={theme === 'light' ? COLORS.gray45 : COLORS.gray45}
                   />
-                  {icon !== undefined && (
-                     <TouchableOpacity style={styles.icon} onPress={showPassword}>
-                        {show ? icon?.show : icon?.hide}
-                     </TouchableOpacity>
-                  )}
+                  {icon !== undefined &&
+                     (secureTextEntry ? (
+                        <TouchableOpacity style={styles.icon} onPress={showPassword}>
+                           {show ? icon?.show : icon?.hide}
+                        </TouchableOpacity>
+                     ) : onSearch ? (
+                        <TouchableOpacity style={styles.icon}>{icon}</TouchableOpacity>
+                     ) : (
+                        <TouchableOpacity style={styles.icon} onPress={handleResetText}>
+                           <IconAnt name="closecircleo" size={SIZE.xmedium} />
+                        </TouchableOpacity>
+                     ))}
                </View>
             </OutsidePressHandler>
 

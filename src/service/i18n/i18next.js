@@ -1,7 +1,7 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { en, vi } from '../locales';
-import config from '../config';
+import config from '../../config';
+import { en, vi } from '../../locales';
 
 const languageResources = {
    en: { translation: en },

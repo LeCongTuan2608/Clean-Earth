@@ -5,4 +5,14 @@ import InputCus from './InputCus';
 import InputSelect from './InputSelect';
 import InputOTP from './InputOTP';
 import LoadingScreen from './LoadingScreen';
-export { AvatarCus, HeaderNav, ItemNotification, InputCus, InputSelect, InputOTP, LoadingScreen };
+import IconImage from './IconImage';
+export {
+   AvatarCus,
+   HeaderNav,
+   ItemNotification,
+   InputCus,
+   InputSelect,
+   InputOTP,
+   LoadingScreen,
+   IconImage,
+};

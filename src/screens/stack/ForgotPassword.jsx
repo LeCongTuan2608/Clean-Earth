@@ -10,8 +10,6 @@ import { TouchableOpacity } from 'react-native';
 import { COLORS, SIZE } from '../../constants';
 import * as yup from 'yup';
 import { KeyboardAvoidingView } from 'react-native';
-
-import { i18next, languageResources } from '../../service';
 import { useTranslation } from 'react-i18next';
 
 const initialValues = { email: '' };

@@ -10,13 +10,13 @@ import {
 } from '../screens';
 import MainTabs from './MainTabs';
 
-import { i18next, languageResources } from '../service';
+import { i18next, languageResources } from '../service/i18n';
 import { t } from 'i18next';
 
 const App = [
-   /* home stack*/
+   /* Home tab*/
    {
-      name: 'Home',
+      name: 'App',
       element: MainTabs,
       options: {
          headerShown: false,

@@ -18,6 +18,9 @@
       "notification": "Thông báo",
       "menu": "Menu"
    },
+   "home": {
+      "placeholder-search": "Tìm kiếm ở đây"
+   },
    "menu": {
       "label-theme": "Chủ đề",
       "label-language": "Ngôn ngữ",

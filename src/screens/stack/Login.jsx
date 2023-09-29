@@ -18,7 +18,6 @@ import { Formik, ErrorMessage, Field, Form } from 'formik';
 import { IconAnt, IconIon } from '../../icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useTranslation } from 'react-i18next';
-import { languageResources, i18next } from '../../service';
 
 Login.propTypes = {};
 
