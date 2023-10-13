@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { TextInput, StyleSheet, Text, View, TouchableOpacity, Keyboard } from 'react-native';
 import { COLORS, SIZE } from '../constants';
 import { ThemeContext } from '../context';
@@ -23,10 +23,10 @@ function InputCus(props) {
       placeholder = undefined,
       onFocus = undefined,
       onChange = undefined,
+      onSubmitEditing = undefined,
       secureTextEntry = false,
       textContentType = undefined,
-      clearText = false,
-      onResetText = undefined,
+      resetText = false,
       //icon
       icon = undefined,
       //   errors
@@ -35,17 +35,24 @@ function InputCus(props) {
       touched = undefined,
    } = props;
    const [show, setShow] = useState(secureTextEntry);
-   const [onSearch, setOnSearch] = useState(clearText);
+   const [showIconClear, setShowIconClear] = useState(resetText);
+   const input = useRef(null);
+   //
    const showPassword = () => {
       setShow(!show);
    };
    const handleChangeText = (value) => {
       onChangeText(value);
-      onResetText && value !== '' ? setOnSearch(false) : setOnSearch(true);
+      value !== '' ? setShowIconClear(false) : setShowIconClear(true);
    };
    const handleResetText = () => {
-      onResetText();
-      setOnSearch(true);
+      input.current.clear();
+      setShowIconClear(true);
+      input.current.focus();
+   };
+   const handleEnterEditing = (event) => {
+      event.persist();
+      onSubmitEditing(event);
    };
    const styles = StyleSheet.create({
       container: {
@@ -104,11 +111,13 @@ function InputCus(props) {
                }}>
                <View style={styles.inputGroup}>
                   <TextInput
+                     ref={input}
                      style={{ ...styles.inputStyle, ...inputStyle }}
                      name={name}
                      value={value}
                      onBlur={onBlur}
                      onChangeText={handleChangeText}
+                     onSubmitEditing={handleEnterEditing}
                      placeholder={placeholder}
                      onFocus={onFocus}
                      onChange={onChange}
@@ -121,12 +130,16 @@ function InputCus(props) {
                         <TouchableOpacity style={styles.icon} onPress={showPassword}>
                            {show ? icon?.show : icon?.hide}
                         </TouchableOpacity>
-                     ) : onSearch ? (
-                        <TouchableOpacity style={styles.icon}>{icon}</TouchableOpacity>
+                     ) : resetText ? (
+                        showIconClear ? (
+                           <TouchableOpacity style={styles.icon}>{icon}</TouchableOpacity>
+                        ) : (
+                           <TouchableOpacity style={styles.icon} onPress={handleResetText}>
+                              <IconAnt name="closecircleo" size={SIZE.xmedium} />
+                           </TouchableOpacity>
+                        )
                      ) : (
-                        <TouchableOpacity style={styles.icon} onPress={handleResetText}>
-                           <IconAnt name="closecircleo" size={SIZE.xmedium} />
-                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.icon}>{icon}</TouchableOpacity>
                      ))}
                </View>
             </OutsidePressHandler>

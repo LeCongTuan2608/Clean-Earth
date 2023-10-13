@@ -10,8 +10,14 @@ import { COLORS, SIZE } from '../../constants';
 import { ThemeContext } from '../../context/ThemeContext';
 import { IconAwesome, IconIon } from '../../icons';
 import location_image from '../../../assets/Images/location-image.png';
-Home.propTypes = {};
+import { Geocoding } from '../../service/api';
+import MapViewDirections from 'react-native-maps-directions';
 
+Home.propTypes = {};
+const getGeocoding = async (latitude, longitude) => {
+   const result = await Geocoding.getGeocoding(latitude, longitude);
+   return result;
+};
 const delta = {
    latitudeDelta: 0.0222,
    longitudeDelta: 0.002,
@@ -35,7 +41,7 @@ function Home(props) {
       { id: 7, latitude: 10.854, longitude: 106.802 },
       { id: 8, latitude: 10.855, longitude: 106.803 },
    ]);
-   const [newRegion, setNewRegion] = useState({});
+   const [destination, setDestination] = useState({});
    const [search, setSearch] = useState('');
    const [onSearch, setOnSearch] = useState(true);
    const mapRef = useRef(null);
@@ -50,9 +56,7 @@ function Home(props) {
             let result = await Location.getCurrentPositionAsync();
             console.log('result:', result);
             const { latitude, longitude } = result?.coords;
-            // const info = await Geocoding.getGeocoding(region.latitude, region.longitude);
-            // console.log('info:', info);
-
+            // getGeocoding(latitude, longitude);
             setInitialRegion((pre) => {
                return { ...pre, latitude, longitude };
             });
@@ -69,9 +73,10 @@ function Home(props) {
    const handleChangeText = (value) => {
       setSearch(value);
    };
-   const onResetText = () => {
-      setSearch('');
+   const handleSubmit = (event) => {
+      console.log('search:', search);
    };
+
    // handle map
    const handleChangeRegion = (region) => {
       setHightColor(true);
@@ -80,12 +85,20 @@ function Home(props) {
       mapRef.current.animateToRegion(initialRegion, 500);
       setHightColor(false);
    };
-   const handleMapPress = (event) => {
-      const newLocation = {
+   const handleMapPress = async (event) => {
+      const newDestination = {
          latitude: event.nativeEvent.coordinate.latitude,
          longitude: event.nativeEvent.coordinate.longitude,
       };
-      setNewRegion(newLocation);
+      setDestination(newDestination);
+      // await getGeocoding(newDestination.latitude, newDestination.longitude);
+   };
+   const handlePoiClick = async (event) => {
+      // event.persist();
+      const { coordinate, name, placeId } = event.nativeEvent;
+      // console.log(`Đã nhấn vào điểm: ${name} tại vị trí: ${JSON.stringify(coordinate)}`);
+      // const result = await getGeocoding(coordinate.latitude, coordinate.longitude);
+      setDestination(coordinate);
    };
    //style
    const styles = StyleSheet.create({
@@ -159,9 +172,9 @@ function Home(props) {
                      inputStyle={styles.inputSearch}
                      value={search}
                      onChangeText={handleChangeText}
+                     onSubmitEditing={handleSubmit}
                      placeholder={t('home.placeholder-search')}
-                     clearText
-                     onResetText={onResetText}
+                     resetText
                      icon={
                         <IconIon
                            name="search"
@@ -171,12 +184,14 @@ function Home(props) {
                      }
                   />
                </View>
+
                <MapView
                   ref={mapRef}
                   style={styles.content}
                   region={currentRegion}
                   provider={PROVIDER_GOOGLE}
                   onRegionChangeComplete={handleChangeRegion}
+                  onPoiClick={handlePoiClick}
                   onPress={handleMapPress}>
                   {initialRegion?.latitude && (
                      <Marker
@@ -200,16 +215,22 @@ function Home(props) {
                         />
                      );
                   })}
-                  {newRegion?.latitude && (
+                  {destination?.latitude && (
                      <Marker
                         coordinate={{
-                           latitude: newRegion?.latitude,
-                           longitude: newRegion?.longitude,
+                           latitude: destination?.latitude,
+                           longitude: destination?.longitude,
                         }}
                         title="New Location"
                         image={imgLocationCurrent}
+                        draggable
                      />
                   )}
+                  {/* <MapViewDirections
+                     origin={initialRegion}
+                     destination={destination}
+                     apikey={'AIzaSyBBjBlMOC4HHcu9bo6xtvt_3AbxJhRutl8'}
+                  /> */}
                </MapView>
                <TouchableOpacity style={styles.box} onPress={handleBackRegion}>
                   <View style={styles.item}>
