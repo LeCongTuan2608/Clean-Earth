@@ -52,7 +52,7 @@ function InputCus(props) {
    };
    const handleEnterEditing = (event) => {
       event.persist();
-      onSubmitEditing(event);
+      onSubmitEditing && onSubmitEditing(event);
    };
    const styles = StyleSheet.create({
       container: {

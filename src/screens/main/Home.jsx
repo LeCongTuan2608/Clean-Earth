@@ -33,6 +33,7 @@ function Home(props) {
    const [currentRegion, setCurrentRegion] = useState({ ...delta });
    const [hightColor, setHightColor] = useState(true);
    const [locationOther, setLocationOther] = useState([
+      //fake data
       { id: 1, latitude: 10.85, longitude: 106.798 },
       { id: 2, latitude: 10.8505, longitude: 106.7975 },
       { id: 4, latitude: 10.851, longitude: 106.795 },
